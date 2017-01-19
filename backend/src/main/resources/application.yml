@@ -1,0 +1,19 @@
+
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: email
+answer:
+  q1: a
+  q2: a
+  q3: a
+  q4: a
+  q5: a
+  q6: a
+  q7: a
+DrawSize:
+  size: 1
+

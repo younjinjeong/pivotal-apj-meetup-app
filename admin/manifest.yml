@@ -1,0 +1,11 @@
+---
+applications:
+- name: emc-forum-admin
+  host: emc-forum-admin
+  memory: 1GB
+  path: target/admin-0.0.1-SNAPSHOT.jar
+  services:
+   - emc-forum-service-registry
+   - emc-forum-config-server
+   - emc-forum-rabbitmq
+

@@ -1,0 +1,7 @@
+---
+applications:
+- name: pivotal-apj-meetup-eureka
+  host: pivotal-apj-meetup-eureka
+  memory: 512MB
+  path: target/eureka-0.0.1-SNAPSHOT.jar
+

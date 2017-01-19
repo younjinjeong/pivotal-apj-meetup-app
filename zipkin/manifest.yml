@@ -1,0 +1,11 @@
+---
+applications:
+- name: pivotal-apj-meetup-zipkin
+  host: pivotal-apj-meetup-zipkin
+  memory: 1GB
+  path: target/zipkin-0.0.1-SNAPSHOT.jar
+  services:
+   - pivotal-apj-meetup-service-registry
+   - pivotal-apj-meetup-config-server
+   - pivotal-apj-meetup-rabbitmq
+

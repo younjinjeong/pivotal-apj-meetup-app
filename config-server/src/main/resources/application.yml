@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: pivotal-apj-meetup-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/younjinjeong/pivotal-apj-meetup-config.git
+server:
+  port: 8888

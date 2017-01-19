@@ -1,0 +1,10 @@
+---
+applications:
+- name: emc-forum-edge
+  host: emc-forum
+  memory: 1GB
+  path: target/edge-0.0.1-SNAPSHOT.jar
+  services:
+   - emc-forum-service-registry
+   - emc-forum-config-server
+   - emc-forum-rabbitmq

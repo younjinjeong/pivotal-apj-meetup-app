@@ -1,0 +1,12 @@
+---
+applications:
+- name: test-data
+  host: test-data
+  memory: 1GB
+  path: target/test-data-0.0.1-SNAPSHOT.jar
+  env:
+      DEBUG: "true"
+      debug: "true"
+  services:
+   - test-db
+

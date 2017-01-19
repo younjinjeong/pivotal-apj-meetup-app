@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: emc-forum-frontend
+  cloud:
+    config:
+      uri: ${vcap.services.emc-forum-config-server.credentials.uri:http://localhost:8888}

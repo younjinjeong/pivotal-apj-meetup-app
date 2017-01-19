@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>EMC Forum 2016</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+</head>
+<body>
+
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+	<!-- Main -->
+	<div id="main">
+
+		<section id="two" class="tiles">
+			<div class="inner">
+
+
+				<h2>Number of participant answered all questions correctly: </h2>
+				<div class="12u 12u$(small)">
+					<h1 id="allCorrect"class="align-center"></h1>
+				</div>
+				<!--<div id="loading"></div>-->
+				<div class="table-wrapper">
+
+					<table>
+						<thead>
+						<tr>
+							<th>Email</th>
+						</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+
+				<div class="12u$">
+					<ul class="actions">
+						<li>
+							<input id="draw" type="button" value="Lucky draw" class="special" />
+							<input id="email" type="button" value="Send Email" class="special" />
+						</li>
+					</ul>
+				</div>
+				<h3 id="emailSent">Congratulations! Emails have been sent to above winners.</h3>
+
+
+			</div>
+		</section>
+
+	</div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+<!--<script src="http://spin.js.org/spin.min.js"></script>-->
+<script>
+
+	$(document).ready(function() {
+
+//		var opts = {
+//			lines: 13 // The number of lines to draw
+//			, length: 20 // The length of each line
+//			, width: 8 // The line thickness
+//			, radius: 52 // The radius of the inner circle
+//			, scale: 3 // Scales overall size of the spinner
+//			, corners: 1 // Corner roundness (0..1)
+//			, color: '#fff' // #rgb or #rrggbb or array of colors
+//			, opacity:	 0.3 // Opacity of the lines
+//			, rotate: 0 // The rotation offset
+//			, direction: 1 // 1: clockwise, -1: counterclockwise
+//			, speed: 1.4 // Rounds per second
+//			, trail: 100 // Afterglow percentage
+//			, fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+//			, zIndex: 2e9 // The z-index (defaults to 2000000000)
+//			, className: 'spinner' // The CSS class to assign to the spinner
+//			, top: '50%' // Top position relative to parent
+//			, left: '50%' // Left position relative to parent
+//			, shadow: false // Whether to render a shadow
+//			, hwaccel: false // Whether to use hardware acceleration
+//			, position: 'absolute' // Element positioning
+//		}
+//		var target = document.getElementById('loading');
+//		var spinner = new Spinner(opts).spin(target);
+
+
+		$("#draw").hide();
+		$("#email").hide();
+		$(".table-wrapper").hide();
+		$("#emailSent").hide();
+
+		$("#email").on('click', function(){
+			$.post("/backend/emailAllCorrect", function(data){
+				$("#email").hide();
+				$("#emailSent").show();
+			});
+		});
+
+		function prepareTable(emails){
+			$(".table-wrapper table tbody").html('');
+			for(i=0;i<emails.length;i++ )
+				$(".table-wrapper table tbody").append("<tr><td>"+emails[i]+"</td></tr>")
+			$(".table-wrapper").show();
+
+		}
+
+		$("#draw").on('click', function(){
+			$.post("/backend/draw", function(emails){
+				prepareTable(emails)
+				$("#draw").hide();
+				$("#emailSent").show();
+			});
+		});
+
+		$.get( "/backend/emailOfAllCorrect", function( allCorrectEmail ) {
+			$("#allCorrect").html(allCorrectEmail.length);
+			prepareTable(allCorrectEmail)
+			$.get( "/backend/numberOfAward", function( award ) {
+				if(allCorrectEmail.length > award){
+//					$.get("/repository/isDrew",function (drew){
+//						if(drew){
+//							$.get("/repository/findAllLucky", function(allLuckyEmail){
+//								prepareTable(allLuckyEmail);
+//								$("#emailSent").show();
+//							});
+//						}else{
+							// need to draw
+							$("#draw").show();
+//						}
+//					});
+				}else if (allCorrectEmail.length > 0){
+					// no need to draw, email directly
+					$("#email").show();
+				}
+			});
+		});
+
+	});
+</script>
+</body>
+</html>

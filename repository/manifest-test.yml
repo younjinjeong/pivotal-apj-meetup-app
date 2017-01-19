@@ -1,0 +1,14 @@
+---
+applications:
+- name: repository
+  host: emc-forum-repository
+  memory: 1GB
+  path: target/repository-0.0.1-SNAPSHOT.jar
+  env:
+      DEBUG: "true"
+      debug: "true"
+  services:
+   - service-registry
+   - config-service
+   - test-db
+   - rabbitmq
