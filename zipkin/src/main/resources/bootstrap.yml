@@ -3,4 +3,4 @@ spring:
     name: pivotal-apj-meetup-zipkin
   cloud:
     config:
-      uri: ${vcap.services.emc-forum-config-server.credentials.uri:http://localhost:8888}
+      uri: ${vcap.services.pivotal-apj-meetup-config-server.credentials.uri:http://localhost:8888}

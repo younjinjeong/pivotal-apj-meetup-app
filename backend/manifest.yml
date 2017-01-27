@@ -1,13 +1,13 @@
 ---
 applications:
-- name: emc-forum-backend
-  host: emc-forum-backend
+- name: pivotal-apj-meetup-backend
+  host: pivotal-apj-meetup-backend
   memory: 1GB
   path: target/backend-0.0.1-SNAPSHOT.jar
   env:
       DEBUG: "true"
       debug: "true"
   services:
-   - emc-forum-service-registry
-   - emc-forum-config-server
-   - emc-forum-rabbitmq
+   - pivotal-apj-meetup-service-registry
+   - pivotal-apj-meetup-config-server
+   - pivotal-apj-meetup-rabbitmq

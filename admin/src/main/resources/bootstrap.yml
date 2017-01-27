@@ -1,6 +1,6 @@
 spring:
   application:
-    name: emc-forum-admin
+    name: pivotal-apj-meetup-admin
   cloud:
     config:
-      uri: ${vcap.services.emc-forum-config-server.credentials.uri:http://localhost:8888}
+      uri: ${vcap.services.pivotal-apj-meetup-config-server.credentials.uri:http://localhost:8888}
